@@ -1,27 +1,11 @@
 {
   "products": [
     {
-      "id": "1068",
-      "fname": "assdsdsd",
-      "lname": "Ergashaliyev",
-      "address": "as",
-      "city": "as",
-      "country": "Uzbekiston"
-    },
-    {
-      "id": "0c78",
-      "fname": "",
-      "lname": "",
-      "address": "",
-      "city": "",
-      "country": ""
-    },
-    {
-      "id": "bbee",
-      "title": "dd",
-      "price": "ss",
-      "category": "aa",
-      "image": "asas"
+      "id": "8c93",
+      "title": "sa",
+      "price": "11",
+      "category": "sss",
+      "image": "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/IMG_Academy_Logo.svg/800px-IMG_Academy_Logo.svg.png"
     }
   ]
 }
