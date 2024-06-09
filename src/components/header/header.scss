@@ -5,9 +5,15 @@
   align-items: flex-start;
   &__form {
     box-shadow: 1px 1px 10px #aaa4;
-    padding: 40px 20px;
+    padding: 20px;
     margin: 40px 0px;
     border-radius: 10px;
+
+    h1 {
+      font-size: 30px;
+      padding-bottom: 20px;
+      text-align: center;
+    }
   }
 
   form {
@@ -80,4 +86,17 @@
     padding: 10px;
     background-color: red !important;
   }
+}
+
+.form__edit {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  box-shadow: 1px 1px 10px #aaa8;
+  z-index: 9990;
+  padding: 40px;
+  border-radius: 10px;
+  width: 500px;
 }

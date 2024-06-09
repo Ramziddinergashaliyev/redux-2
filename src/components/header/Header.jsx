@@ -4,6 +4,8 @@ import "./header.scss";
 
 function Header() {
   const [data, setData] = useState(null);
+  const [edit, setEdit] = useState(null);
+  const [reload, setReload] = useState(false);
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
@@ -12,8 +14,10 @@ function Header() {
   useEffect(() => {
     fetch(API_URL)
       .then((res) => res.json())
-      .then((res) => setData(res));
-  });
+      .then((res) => {
+        setData(res);
+      });
+  }, [reload]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,6 +28,7 @@ function Header() {
       image,
     };
     console.log(user);
+    setReload((prev) => !prev);
 
     fetch(API_URL, {
       method: "POST",
@@ -40,8 +45,9 @@ function Header() {
         <img src={el?.image} alt="" />
       </div>
       <div className="header__card__info">
-        <h1 className="header__card__title">{el?.title}</h1>
-        <p className="header__card__text">{el?.price}</p>
+        <h1 className="header__card__title">title: {el?.title}</h1>
+        <p className="header__card__text">price: {el?.category}</p>
+        <p className="header__card__text">price: {el?.price}</p>
       </div>
       <div className="header__card__btns">
         <button
@@ -50,7 +56,9 @@ function Header() {
         >
           delete
         </button>
-        <button className="header__card-edit">edit</button>
+        <button onClick={() => setEdit(el)} className="header__card-edit">
+          edit
+        </button>
       </div>
     </div>
   ));
@@ -63,12 +71,27 @@ function Header() {
       },
     }).then((res) => {
       console.log(res);
+      setReload((prev) => !prev);
     });
+  };
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+    fetch(`${API_URL}/${edit.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(edit),
+    });
+    setReload((p) => !p);
+    setEdit(null);
   };
 
   return (
     <section className="header container">
       <div className="header__form">
+        <h1>Products</h1>
         <form onSubmit={handleSubmit} action="">
           <input
             value={image}
@@ -91,12 +114,48 @@ function Header() {
           <input
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            type="text"
+            type="number"
             placeholder="price"
           />
           <button>Submit</button>
         </form>
       </div>
+      {edit ? (
+        <form className="form__edit" onSubmit={handleEdit} action="">
+          <input
+            value={edit.image}
+            onChange={(e) => setEdit((p) => ({ ...p, image: e.target.value }))}
+            type="url"
+          />
+          <input
+            value={edit.title}
+            onChange={(e) => setEdit((p) => ({ ...p, title: e.target.value }))}
+            type="text"
+          />
+          <input
+            value={edit.category}
+            onChange={(e) =>
+              setEdit((p) => ({ ...p, category: e.target.value }))
+            }
+            type="text"
+          />
+          <input
+            value={edit.price}
+            onChange={(e) => setEdit((p) => ({ ...p, price: e.target.value }))}
+            type="number"
+          />
+          <button className="edit__btn-save">Save</button>
+          <button
+            type="button"
+            onClick={() => setEdit(null)}
+            className="edit__btn-cancel"
+          >
+            Cancel
+          </button>
+        </form>
+      ) : (
+        <></>
+      )}
 
       <div className="header__cards">{dataForm}</div>
     </section>
