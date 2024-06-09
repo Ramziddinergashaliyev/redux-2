@@ -29,6 +29,10 @@ function Header() {
     };
     console.log(user);
     setReload((prev) => !prev);
+    setTitle("");
+    setCategory("");
+    setImage("");
+    setPrice("");
 
     fetch(API_URL, {
       method: "POST",
