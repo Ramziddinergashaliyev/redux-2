@@ -1,0 +1,27 @@
+{
+  "products": [
+    {
+      "id": "1068",
+      "fname": "assdsdsd",
+      "lname": "Ergashaliyev",
+      "address": "as",
+      "city": "as",
+      "country": "Uzbekiston"
+    },
+    {
+      "id": "0c78",
+      "fname": "",
+      "lname": "",
+      "address": "",
+      "city": "",
+      "country": ""
+    },
+    {
+      "id": "bbee",
+      "title": "dd",
+      "price": "ss",
+      "category": "aa",
+      "image": "asas"
+    }
+  ]
+}
